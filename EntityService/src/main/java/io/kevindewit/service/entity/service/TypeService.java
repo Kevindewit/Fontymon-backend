@@ -10,6 +10,8 @@ import java.util.UUID;
 
 @Service
 public class TypeService {
+
+
     private final TypeRepository typeRepository;
 
     @Autowired
