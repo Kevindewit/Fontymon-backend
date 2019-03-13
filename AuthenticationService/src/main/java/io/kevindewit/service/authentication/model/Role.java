@@ -1,41 +1,41 @@
 package io.kevindewit.service.authentication.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.UUID;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "ROLE")
 public class Role {
     @Id
-    @Column(name = "ROLE_ID")
-    private UUID uuid;
-    @Column(nullable = false, unique = true)
-    private String role;
+    @Column(name = "role_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Enumerated(EnumType.STRING)
+    private ROLE_NAME name;
 
     public Role() {
     }
 
-    public Role(String role) {
-        this.uuid = UUID.randomUUID();
-        this.role = role;
+    public Role(ROLE_NAME name) {
+        this.name = name;
     }
 
-    public UUID getUuid() {
-        return uuid;
+    //region default getters and setters
+
+    public Long getId() {
+        return id;
     }
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getRole() {
-        return role;
+    public ROLE_NAME getName() {
+        return name;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setName(ROLE_NAME name) {
+        this.name = name;
     }
+
+    //endregion
 }
