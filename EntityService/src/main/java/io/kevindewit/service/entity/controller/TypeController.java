@@ -44,7 +44,7 @@ public class TypeController {
             @ApiResponse(code = 404, message = "not found")
     })
     @RequestMapping(
-            value = "/getType",
+            value = "/Type",
             method = RequestMethod.GET
     )
     public ResponseEntity<?> getTypeByName(@RequestParam(value = "name") String name) {

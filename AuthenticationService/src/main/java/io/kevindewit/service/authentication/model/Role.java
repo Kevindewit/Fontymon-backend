@@ -19,7 +19,7 @@ public class Role {
         this.name = name;
     }
 
-    //region default getters and setters
+    //region // default getters and setters
 
     public Long getId() {
         return id;
@@ -38,4 +38,10 @@ public class Role {
     }
 
     //endregion
+
+
+    @Override
+    public String toString() {
+        return name.name();
+    }
 }

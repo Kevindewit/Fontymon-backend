@@ -15,12 +15,6 @@ public class User {
     private Long id;
 
     @NotBlank
-    private String firstName;
-
-    @NotBlank
-    private String lastName;
-
-    @NotBlank
     @Column(unique = true)
     private String email;
 
@@ -34,16 +28,14 @@ public class User {
 
     @ManyToMany
     @JoinTable(name = "user_roles",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id"))
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
 
-    public User(@NotBlank String firstName, @NotBlank String lastName, @Email @NotBlank String email, @NotBlank String username, @NotBlank @Size(min = 6, max = 256) String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User( @Email @NotBlank String email, @NotBlank String username, @NotBlank @Size(min = 6, max = 256) String password) {
         this.email = email;
         this.username = username;
         this.password = password;
@@ -57,22 +49,6 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {

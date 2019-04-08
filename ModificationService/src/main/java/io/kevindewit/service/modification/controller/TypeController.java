@@ -40,11 +40,7 @@ public class TypeController {
             response = Modification_Type.class
     )
     @ApiResponses({
-            @ApiResponse(code = 200, message = "Successfully retrieved Types", response = Modification_Type.class),
-            @ApiResponse(code = 201, message = "Successfully created  a Type"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "You are forbidden from accessing the resource"),
-            @ApiResponse(code = 404, message = "not found")
+            @ApiResponse(code = 501, message = "Not implemented")
     })
     @RequestMapping(
             value = "/putType",
