@@ -1,15 +1,11 @@
-package io.kevindewit.service.authentication.message;
+package io.kevindewit.service.authentication.model.request;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import io.swagger.annotations.ApiModelProperty;
 
-public class LoginForm {
-
-    @NotBlank
+public class AuthenticationRequest {
+    @ApiModelProperty(position = 0)
     private String username;
-
-    @NotBlank
-    @Size(min = 6, max = 256)
+    @ApiModelProperty(position = 1)
     private String password;
 
     public String getUsername() {
@@ -27,5 +23,4 @@ public class LoginForm {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }
