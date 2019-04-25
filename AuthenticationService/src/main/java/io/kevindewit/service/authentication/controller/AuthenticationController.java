@@ -1,5 +1,6 @@
 package io.kevindewit.service.authentication.controller;
 
+import io.kevindewit.service.authentication.config.jwt.InvalidJwtAuthenticationException;
 import io.kevindewit.service.authentication.model.request.AuthenticationRequest;
 import io.kevindewit.service.authentication.model.request.RegisterRequest;
 import io.kevindewit.service.authentication.model.response.JwtTokenResponse;
@@ -11,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +36,7 @@ public class AuthenticationController {
     @ApiOperation(
             value = "authenticate",
             tags = {
-                    "Guest",
-                    "User"
+                    "Guest"
             },
             response = JwtTokenResponse.class
     )
@@ -76,6 +77,7 @@ public class AuthenticationController {
             },
             response = UserResponse.class
     )
+    @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public ResponseEntity<?> getUserInfo(@RequestHeader("Authorization") String token) {
         UserResponse userResponse = userService.getUserInfo(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -87,6 +89,11 @@ public class AuthenticationController {
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<?> handleEntityNotFoundException(EntityNotFoundException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(InvalidJwtAuthenticationException.class)
+    public ResponseEntity<?> handleEntityNotFoundException(InvalidJwtAuthenticationException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
 }

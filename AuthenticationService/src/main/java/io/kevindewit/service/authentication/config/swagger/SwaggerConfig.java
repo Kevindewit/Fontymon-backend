@@ -1,6 +1,5 @@
 package io.kevindewit.service.authentication.config.swagger;
 
-import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -20,7 +19,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+                .apis(RequestHandlerSelectors.basePackage("io.kevindewit.service.authentication"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo())
@@ -42,7 +41,6 @@ public class SwaggerConfig {
                 .licenseUrl("API license URL")
                 .version("0.0.1")
                 .build()
-                ;
+        ;
     }
-
 }

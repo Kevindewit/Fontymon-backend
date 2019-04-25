@@ -4,7 +4,6 @@ import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -130,12 +129,6 @@ public class JwtAuthenticationTokenProvider {
         @Override
         public boolean isEnabled() {
             return true;
-        }
-    }
-
-    public class InvalidJwtAuthenticationException extends AuthenticationException {
-        InvalidJwtAuthenticationException(String e) {
-            super(e);
         }
     }
 

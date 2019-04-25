@@ -15,6 +15,12 @@ public class User {
     private Long id;
 
     @NotBlank
+    private String firstName;
+
+    @NotBlank
+    private String lastName;
+
+    @NotBlank
     @Column(unique = true)
     private String email;
 

@@ -11,13 +11,14 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class DataLoader implements ApplicationListener<ApplicationReadyEvent> {
 
     private final RoleRepository roleRepository;
-
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -29,36 +30,30 @@ public class DataLoader implements ApplicationListener<ApplicationReadyEvent> {
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-        Role studentRole = new Role(ROLE_NAME.ROLE_STUDENT);
-        Role teacherRole = new Role(ROLE_NAME.ROLE_TEACHER);
-        Role adminRole = new Role(ROLE_NAME.ROLE_ADMIN);
+        List<Role> roles = new ArrayList<Role>() {{
+           add(new Role(ROLE_NAME.ROLE_USER));
+           add(new Role(ROLE_NAME.ROLE_DEVELOPER));
+           add(new Role(ROLE_NAME.ROLE_MODERATOR));
+           add(new Role(ROLE_NAME.ROLE_ADMIN));
+           add(new Role(ROLE_NAME.ROLE_SYSTEM));
+        }};
 
-        roleRepository.save(studentRole);
-        roleRepository.save(teacherRole);
-        roleRepository.save(adminRole);
+        for (Role role : roles)
+            roleRepository.save(role);
 
-        User studentUser = new User();
-        User teacherUser = new User();
-        User adminUser = new User();
+        List<User> users = new ArrayList<User>() {{
+            add(new User("user@fontymon.io", "user", "DemoPassword"));
+            add(new User("developer@fontymon.io", "developer", "DemoPassword"));
+            add(new User("moderator@fontymon.io", "moderator", "DemoPassword"));
+            add(new User("admin@fontymon.io", "admin", "DemoPassword"));
+            add(new User("system@fontymon.io", "system", "DemoPassword"));
+        }};
 
-        studentUser.setEmail("Student.Account@Examapp.com");
-        studentUser.setUsername("StudentAccount");
-        studentUser.setPassword(passwordEncoder.encode("DemoPassword"));
-        studentUser.getRoles().add(studentRole);
-
-        teacherUser.setEmail("Teacher.Account@Examapp.com");
-        teacherUser.setUsername("TeacherAccount");
-        teacherUser.setPassword(passwordEncoder.encode("DemoPassword"));
-        teacherUser.getRoles().add(teacherRole);
-
-        adminUser.setEmail("Admin.Account@Examapp.com");
-        adminUser.setUsername("AdminAccount");
-        adminUser.setPassword(passwordEncoder.encode("DemoPassword"));
-        adminUser.getRoles().add(adminRole);
-
-        userRepository.save(studentUser);
-        userRepository.save(teacherUser);
-        userRepository.save(adminUser);
+        for (User user : users) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.getRoles().add(roles.get(users.indexOf(user)));
+            userRepository.save(user);
+        }
     }
 
 }
