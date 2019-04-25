@@ -1,6 +1,6 @@
 package io.kevindewit.service.entity.repository;
 
-import io.kevindewit.service.entity.models.Entity_Base;
+import io.kevindewit.service.entity.model.Entity_Base;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 

@@ -1,6 +1,6 @@
 package io.kevindewit.service.entity.repository;
 
-import io.kevindewit.service.entity.models.Entity_Type;
+import io.kevindewit.service.entity.model.Entity_Type;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;

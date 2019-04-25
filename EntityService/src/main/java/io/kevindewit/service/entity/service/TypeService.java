@@ -1,6 +1,6 @@
 package io.kevindewit.service.entity.service;
 
-import io.kevindewit.service.entity.models.Entity_Type;
+import io.kevindewit.service.entity.model.Entity_Type;
 import io.kevindewit.service.entity.repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,6 @@ import java.util.UUID;
 @Service
 public class TypeService {
 
-
     private final TypeRepository typeRepository;
 
     @Autowired
@@ -21,10 +20,6 @@ public class TypeService {
 
     public void save(Entity_Type entityType) {
         typeRepository.save(entityType);
-    }
-
-    public Entity_Type findById(UUID uuid){
-        return typeRepository.findById(uuid).get();
     }
 
     public Entity_Type findEntity_TypeByName(String name) {

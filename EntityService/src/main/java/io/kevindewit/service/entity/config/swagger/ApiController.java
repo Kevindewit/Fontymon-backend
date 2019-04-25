@@ -1,4 +1,4 @@
-package io.kevindewit.service.entity.swagger;
+package io.kevindewit.service.entity.config.swagger;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

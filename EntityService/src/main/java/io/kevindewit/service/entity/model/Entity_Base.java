@@ -1,5 +1,6 @@
-package io.kevindewit.service.entity.models;
+package io.kevindewit.service.entity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Column;
@@ -20,6 +21,7 @@ public abstract class Entity_Base {
             example = "98da6222-291c-11e9-b210-d663bd873d93",
             position = 0
     )
+    @JsonIgnore
     private UUID uuid;
 
     @Column(unique = true)

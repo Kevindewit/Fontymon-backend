@@ -1,7 +1,7 @@
-package io.kevindewit.service.authentication.config.security;
+package io.kevindewit.service.entity.config.security;
 
-import io.kevindewit.service.authentication.config.jwt.JwtAuthenticationTokenProvider;
-import io.kevindewit.service.authentication.config.jwt.JwtConfigurer;
+import io.kevindewit.service.entity.config.jwt.JwtAuthenticationTokenProvider;
+import io.kevindewit.service.entity.config.jwt.JwtConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

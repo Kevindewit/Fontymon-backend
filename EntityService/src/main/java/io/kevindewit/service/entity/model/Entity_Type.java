@@ -1,4 +1,4 @@
-package io.kevindewit.service.entity.models;
+package io.kevindewit.service.entity.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
